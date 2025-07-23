@@ -1,0 +1,170 @@
+[gd_scene load_steps=12 format=3 uid="uid://ceqquft2edgqd"]
+
+[ext_resource type="PackedScene" uid="uid://digo2x3ub4lsv" path="res://GameData/3D/toiled/toiledLevel.glb" id="1_8pjsc"]
+[ext_resource type="Script" path="res://GameData/Scripts/GameScene.gd" id="1_f2qul"]
+[ext_resource type="PackedScene" uid="uid://c5gmvarioms50" path="res://BaseData/FPS/FPS.tscn" id="2_6p1kd"]
+[ext_resource type="FontFile" uid="uid://1edkivc1y1ii" path="res://BaseData/Font/FreeSerif.ttf" id="3_5xy4o"]
+[ext_resource type="PackedScene" uid="uid://cv6f7rk0xgg0f" path="res://GameData/3D/rightDoor.tscn" id="5_1n2dr"]
+[ext_resource type="PackedScene" uid="uid://b0iidjtc4yktd" path="res://GameData/3D/LeftDoor.tscn" id="5_8ma3b"]
+[ext_resource type="PackedScene" uid="uid://bf0akksha5tta" path="res://GameData/3D/door.tscn" id="7_rsakj"]
+
+[sub_resource type="Environment" id="Environment_8pjsc"]
+background_mode = 1
+ambient_light_source = 2
+ambient_light_color = Color(0.10748, 0.10748, 0.10748, 1)
+tonemap_mode = 3
+ssil_enabled = true
+glow_enabled = true
+glow_intensity = 4.3
+glow_strength = 0.45
+glow_bloom = 1.0
+
+[sub_resource type="Animation" id="Animation_rsakj"]
+resource_name = "firstDoor"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1.309, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_b0lci"]
+resource_name = "secondDoor"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -1.309, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b0lci"]
+_data = {
+"firstDoor": SubResource("Animation_rsakj"),
+"secondDoor": SubResource("Animation_b0lci")
+}
+
+[node name="GameScene" type="Node3D"]
+script = ExtResource("1_f2qul")
+
+[node name="toiledLevel" parent="." instance=ExtResource("1_8pjsc")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8pjsc")
+
+[node name="light" type="Node3D" parent="."]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="light"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.61696, 4.10018, -4.21695)
+omni_range = 15.8806
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="light"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.61696, 4.10018, -0.532398)
+omni_range = 15.8806
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="light"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.61696, 4.10018, 4.51342)
+omni_range = 15.8806
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="light"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.4345, 4.10018, -4.21695)
+omni_range = 15.8806
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="light"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.4345, 4.10018, -0.532398)
+omni_range = 15.8806
+
+[node name="OmniLight3D6" type="OmniLight3D" parent="light"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.4345, 4.10018, 4.51342)
+omni_range = 15.8806
+
+[node name="FPS" parent="." instance=ExtResource("2_6p1kd")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.20738, 1.00882, 0.0972093)
+
+[node name="ui" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="fps" type="Label" parent="ui"]
+layout_mode = 0
+offset_right = 379.0
+offset_bottom = 83.0
+theme_override_fonts/font = ExtResource("3_5xy4o")
+theme_override_font_sizes/font_size = 30
+
+[node name="rightDoors" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.5218, 0, -4.6115)
+
+[node name="rightDoor1" parent="rightDoors" instance=ExtResource("5_1n2dr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.359726, 0.035109)
+
+[node name="rightDoor2" parent="rightDoors" instance=ExtResource("5_1n2dr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.359726, 2.98411)
+
+[node name="rightDoor3" parent="rightDoors" instance=ExtResource("5_1n2dr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.359726, 5.89911)
+
+[node name="rightDoor4" parent="rightDoors" instance=ExtResource("5_1n2dr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.359726, 8.85311)
+
+[node name="rightDoor5" parent="rightDoors" instance=ExtResource("5_1n2dr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.359726, 11.7611)
+
+[node name="leftDoors" type="Node3D" parent="."]
+
+[node name="leftDoor1" parent="leftDoors" instance=ExtResource("5_8ma3b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.69001, 0.359726, -4.54)
+
+[node name="leftDoor2" parent="leftDoors" instance=ExtResource("5_8ma3b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.69001, 0.359726, -1.591)
+
+[node name="leftDoor3" parent="leftDoors" instance=ExtResource("5_8ma3b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.69001, 0.359726, 1.324)
+
+[node name="leftDoor4" parent="leftDoors" instance=ExtResource("5_8ma3b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.69001, 0.359726, 4.278)
+
+[node name="leftDoor5" parent="leftDoors" instance=ExtResource("5_8ma3b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.69001, 0.359726, 7.186)
+
+[node name="statickDoor" parent="." instance=ExtResource("7_rsakj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.41038, -0.00235987, -14.0528)
+
+[node name="firstDoor" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.47174, -0.00235987, -8.71678)
+
+[node name="firstdoor" parent="firstDoor" instance=ExtResource("7_rsakj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.10881, 0, 0)
+collision_layer = 3
+
+[node name="firstdoorAnim" type="AnimationPlayer" parent="firstDoor/firstdoor"]
+libraries = {
+"": SubResource("AnimationLibrary_b0lci")
+}
+
+[node name="secondDoor" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.9599, -0.00235987, -8.71678)
+
+[node name="secondDoor" parent="secondDoor" instance=ExtResource("7_rsakj")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, -0.949497, 0, 0)
+collision_layer = 3
+
+[node name="secondDoorAnim" type="AnimationPlayer" parent="secondDoor/secondDoor"]
+libraries = {
+"": SubResource("AnimationLibrary_b0lci")
+}

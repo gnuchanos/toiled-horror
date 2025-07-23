@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bf0akksha5tta"]
+
+[ext_resource type="PackedScene" uid="uid://bhf2vibitvkmj" path="res://GameData/3D/toiled/toiled_enter_door.glb" id="1_ly1ju"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ly1ju"]
+size = Vector3(2.06494, 4.07916, 0.375)
+
+[node name="door" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.04691, 0, 0)
+
+[node name="toiled_enter_door" parent="." instance=ExtResource("1_ly1ju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.995381, 0, 0)
+
+[node name="body" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100098, 2.05766, 0.0322266)
+shape = SubResource("BoxShape3D_ly1ju")
